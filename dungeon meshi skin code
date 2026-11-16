@@ -250,8 +250,7 @@ div:has(.commas) [class^="warning"] a.tag,
   color: #111111;
 }
 
-div:has(.commas) [class^="relationship"] a.tag,
-div:has(.commas) [class^="relationship"] a.tag[href*="%20*a*%20"] {
+div:has(.commas) [class^="relationship"] a.tag {
   border-color: #994D00;
   background-color: #FFD9B2;
   color: #111111;
@@ -289,8 +288,6 @@ div:has(.commas) [class^="freeform"] a.tag,
 }
 
 div:has(.commas) a.tag:is(:hover,
-:focus),
-div:has(.commas) a.tag[href*="*"]:is(:hover,
 :focus),
 .commas.tags a[data-remote="true"]:is(:hover,
 :focus) {
@@ -352,6 +349,7 @@ button {
   background-image: none !important;
 }
 
+/* Chibi icon: the only part that reacts to hover */
 #header h1.heading a::before {
   content: " ";
   display: inline-block;
@@ -366,6 +364,7 @@ button {
   transition: filter 0.35s ease, transform 0.35s ease;
 }
 
+/* Text logo: moved onto the h1 (outside the link), so the link is only the icon */
 #header h1.heading::after {
   content: " ";
   display: inline-block;
@@ -388,7 +387,6 @@ button {
 
 #inner,
 #main,
-#main.region,
 .index.group,
 ol.index,
 ul.index,
@@ -416,6 +414,8 @@ li.blurb dl.stats {
   text-shadow: 0 0 4px #000000, 0 0 2px #000000;
 }
 
+/* Rating/warning/category/complete icons: stop the inherited black text-shadow
+   from smudging the hidden label text over the icons */
 .required-tags * {
   text-shadow: none;
   letter-spacing: 0;
@@ -528,6 +528,8 @@ li.blurb dl.stats {
   text-shadow: none;
 }
 
+/* Search / index results heading ("1 - 20 of 162 Works in ...")
+   Solid dark panel, big bold sans-serif, high contrast, easy to find and scan */
 #main > h2.heading {
   display: block;
   background-color: rgba(0, 0, 0, 0.9) !important;
@@ -563,6 +565,8 @@ li.blurb dl.stats {
   text-shadow: none;
 }
 
+/* Fic text: easier reading for ADHD / neurodivergent readers
+   Roomier letters, words, lines and paragraphs, shorter lines, steadier contrast */
 #workskin .userstuff,
 #chapters .userstuff,
 .chapter .userstuff.module {
@@ -600,6 +604,7 @@ li.blurb dl.stats {
   margin: 1.4em 1.5em;
 }
 
+/* Comments: keep the commenter's icon beside the text instead of on top of it */
 li.comment {
   overflow: hidden;
   padding: 0.8em;
@@ -617,6 +622,7 @@ li.comment .icon img {
   display: block;
 }
 
+/* AO3 puts a bottom border / underline on the icon box and its link */
 li.comment div.icon,
 li.comment .icon a {
   border: none;
@@ -650,6 +656,7 @@ li.comment ol.thread {
   margin-left: 1em;
 }
 
+/* Default pfp: guests and users with no icon get the Laios image, unframed */
 li.comment .icon .visitor {
   display: block;
   width: 80px;
@@ -673,6 +680,8 @@ li.comment .icon img[src*="icon_user"] {
   padding: 0;
 }
 
+/* Every commenter icon is tilted slightly and glows on hover,
+   Dungeon Meshi colors (soup gold, ember orange, herb green) */
 li.comment .icon .visitor,
 li.comment .icon img {
   transform: rotate(-3deg);
@@ -688,6 +697,8 @@ li.comment .icon a:focus img {
   transform: rotate(-3deg) scale(1.05);
 }
 
+/* Intro text on the home page / index pages
+   ("These are some of the latest works posted to the Archive...") */
 #main > p,
 #main > div > p:not(.notice) {
   background-color: rgba(0, 0, 0, 0.85);
@@ -723,6 +734,7 @@ li.comment .icon a:focus img {
   color: #111111;
 }
 
+/* Collection / pseud / skin blurbs: icon gets its own space, heading moves over */
 .collection .header,
 .pseud .header {
   position: relative;
@@ -759,4 +771,43 @@ li.comment .icon a:focus img {
 .pseud .header .heading {
   margin-left: 92px;
   padding-top: 0.4em;
+}
+
+/* Default pfp on profiles and the header: users with no icon get Kabru, unframed
+   and slightly tilted (comments keep the Laios icon from the rules above) */
+.icon img[src*="icon_user"] {
+  content: url("https://i.postimg.cc/MpBGyh8M/kabru-eating.png");
+  width: auto;
+  height: auto;
+  max-width: 100px;
+  max-height: 100px;
+  background: transparent;
+  border: none;
+  border-image: none;
+  padding: 0;
+  transform: rotate(-5deg);
+}
+
+.pseud .header .icon img[src*="icon_user"] {
+  max-width: 70px;
+  max-height: 70px;
+}
+
+#greeting .icon img[src*="icon_user"] {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* Glow behind your own icon in the top-right corner on hover,
+   Dungeon Meshi colors (soup gold, ember orange, herb green) */
+#greeting .icon img {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+#greeting .icon:hover img,
+#greeting .icon a:focus img {
+  filter: drop-shadow(0 0 4px #FFC857)
+    drop-shadow(0 0 10px #F29E38)
+    drop-shadow(0 0 18px #8FD16A);
+  transform: rotate(-5deg) scale(1.1);
 }
